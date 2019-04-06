@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  </head>
+
+  <body class="container" ng-app="BoroughApp" ng-controller="BoroughCtrl">
+    <h1>Header</h1>
+    <p>Search: <input type="text" ng-model="query" class="form-control"></p>
+    <table class="table">
+      <tr>
+        <th>Street names</th>
+      </tr>
+      <tr ng-repeat="borough in boroughs | orderBy:sortBy | filter:query">
+        <td>{{borough.longitude}}</td>
+        <td>{{borough.latitude}}</td>
+      </tr>
+    </table>
+    <script src="test.js"></script>
+  </body>
+</html>
