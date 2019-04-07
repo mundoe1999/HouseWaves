@@ -1,4 +1,4 @@
-# HouseWaves
+![HouseWaves](/img/HouseWaves_Logo.svg)  
 ###### (Derived from housing and soundwaves.)
 
 [Click here to start](https://mundoe1999.github.io/HouseWaves/)
