@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the noisy people!</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+</head>
+
+<body class="container">
+    <div id="divform" ng-app="BoroughApp" ng-controller="BoroughCtrl">
+        Street Name
+        <input id="stinput"type="text" value="RICHARDS STREET"><br/>
+        Zip Code
+        <input id="zipinput" type="text" value="11231"><br/>
+        <input id="submit" type="submit" onclick="test( )">
+    </div>
+    <div id="result">
+
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>
