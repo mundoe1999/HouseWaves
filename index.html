@@ -15,6 +15,7 @@
       <tr>
         <th>Street names</th>
       </tr>
+      <!--Repeats all entries on the json file -->
       <tr ng-repeat="borough in boroughs | orderBy:sortBy | filter:query">
         <td>{{borough.longitude}}</td>
         <td>{{borough.latitude}}</td>
