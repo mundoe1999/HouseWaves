@@ -23,3 +23,4 @@ OpenStreetMaps is used for the map, and NYC's Open Data database is used for the
 **Simple:** The user inputs an address and zip code and the web app will notify if the place is noisy or not. It also shows the area on the map, with highlighted spots where noise complaints were filed.  
 **Technical:** The user inputs an address and zip code, and the information gets parsed through a javascript function which checks for a match in NYC's open database, for 311 calls, specifically residential noise complaints. There's millions of these complaints, but HouseWaves only checks for noise complaints in the past 6 months. Purely developer choice, but the application is extensible and this can be changed.  
 If the address is recognized (a match with the input and noise complaint is made), the map will zoom in on the location and will notify if the area is known to be noisy. If unrecognized or unnoisy, the map will zoom out.
+
