@@ -3,6 +3,9 @@
 //
 
 var testing;
+var today;
+var sixMonths;
+
 var map = new ol.Map({
     target: 'map',
     layers: [
@@ -16,11 +19,37 @@ var map = new ol.Map({
     })
   });
 
+function setDays(){
+  today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  var oldmm = today.getMonth()-5;
+  var oldyyyy = today.getFullYear();
+
+  if(Math.sign(oldmm)<= 0){
+    oldmm = oldmm + 12;
+    oldyyyy -= 1;
+  }
+
+  oldmm = String(oldmm).padStart(2, '0');
+  today = yyyy + '-' + mm + '-' + dd;
+  sixMonths = oldyyyy + '-' + oldmm + '-' + '01';
+
+  //Setting the second date
+  console.log(today);
+  console.log(sixMonths);
+}
+setDays();
+var apiLink = "https://data.cityofnewyork.us/resource/fhrw-4uyv.json?$where=created_date between '"+ sixMonths+"T00:00:01.000' and '"+today+"T00:00:01.000'&complaint_type=Noise - Residential";
+
   angular.module('BoroughApp', [])
   .controller('BoroughCtrl', ['$scope', '$http', function($scope, $http){
-    $http.get("https://data.cityofnewyork.us/resource/fhrw-4uyv.json?$where=created_date between '2019-01-01T00:00:01.000' and '2019-04-05T02:14:35.000'&complaint_type=Noise - Residential")
+    $http.get(apiLink)
     .then(function(response){
       $scope.boroughs = response.data;
+      //Putting the json into the variable
       testing = response.data;
       console.log(response.data);
     });
@@ -35,13 +64,12 @@ var map = new ol.Map({
         if(testSomething(testing[x].incident_zip, testing[x].street_name)){
           console.log("Noisy!");
           document.getElementById('result').innerHTML=`Noisy neighborhood! Find another place!`;
-
           //Align map to where it is
           CenterMap(testing[x].longitude, testing[x].latitude);
-
           return true;
         }
-    }
+    } //End for loop
+    
     document.getElementById('result').innerHTML=`There have been no noise complaints in this neighborhood!`;
     CenterMap(-74.0060,40.7128);
     map.getView().setZoom(10);
@@ -50,17 +78,15 @@ var map = new ol.Map({
 
 function testSomething(zipcode, street){
   var usr_str = document.getElementById('stinput').value;
-
   var usr_zip = document.getElementById('zipinput').value;
 
   //Ignore Case Sensitivity
     usr_str = usr_str.toUpperCase();
 
-  if(zipcode === usr_zip &&  street === usr_str){
+  if(zipcode === usr_zip && street === usr_str){
     return true;
-  } else{
-    return false;
   }
+  return false;
 }
 
 
